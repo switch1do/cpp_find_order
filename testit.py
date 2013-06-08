@@ -47,6 +47,7 @@ def compile():
         ('LIB',    os.getenv('LIB','')) 
     ]
     
+    print '\nbuilding samples...\n'
     for cc in COMPILERS:
         cmtm = os.path.getmtime('main.c')
         opts = cc[2]
@@ -61,9 +62,10 @@ def compile():
                 os.popen(CC).readline()
             buildtime = time.time()-tm
             artifacts.append(target)
-            print '%-8.3f'%buildtime, ':', CC     
+            print '%-6.1f'%buildtime, ':', CC     
 
 def perform(n):
+    print '\ntesting samples...\n'
     L = dict( map(lambda x: (x,[]), artifacts) )
     for target in artifacts:
         for i in range(n):
